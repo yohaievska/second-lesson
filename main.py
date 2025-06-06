@@ -147,75 +147,139 @@ import string
 
 # HW 5.1
 
-import keyword
-import string
-
-name_value = input("Please enter name of value here:")
-
-check_numbers = name_value[0].isalpha() or name_value[0] == "_"
-check_characters = not any(char.isupper() for char in name_value)
-check_symbols = " " not in name_value and not any(char in string.punctuation and char !="_" for char in name_value) and "__" not in name_value
-check_words = not keyword.iskeyword(name_value)
-
-if check_numbers and check_characters and check_symbols and check_words:
-    print(True)
-else:
-    print(False)
+# import keyword
+# import string
+#
+# name_value = input("Please enter name of value here:")
+#
+# check_numbers = name_value[0].isalpha() or name_value[0] == "_"
+# check_characters = not any(char.isupper() for char in name_value)
+# check_symbols = " " not in name_value and not any(char in string.punctuation and char !="_" for char in name_value) and "__" not in name_value
+# check_words = not keyword.iskeyword(name_value)
+#
+# if check_numbers and check_characters and check_symbols and check_words:
+#     print(True)
+# else:
+#     print(False)
 
 # HW 5.2
 
-while True:
-    first_number = int(input("Please enter first number: "))
-    operator = input("Please enter a mathematical operator: ")
-    second_number = int(input("Please enter second number: "))
-
-    if operator == "+":
-        result = first_number + second_number
-        print(f"{first_number} + {second_number} = {result}")
-    elif operator == "*":
-        result = first_number * second_number
-        print(f"{first_number} * {second_number} = {result}")
-    elif operator == "/":
-        if second_number == 0:
-            print("We're not doing advanced math here... Relax, this isn't rocket science, just enter a different value for the second number.")
-        else:
-            result = first_number / second_number
-            print(f"{first_number} / {second_number} = {result}")
-    elif operator == "-":
-        result = first_number - second_number
-        print(f"{first_number} - {second_number} = {result}")
-    else:
-        print("Invalid operator")
-
-    repeat = input("Do you want to calculate another number? (y/n): ").lower()
-    if repeat != "y":
-        print("Thank you for using this program. See you next time!")
-        break
+# while True:
+#     first_number = int(input("Please enter first number: "))
+#     operator = input("Please enter a mathematical operator: ")
+#     second_number = int(input("Please enter second number: "))
+#
+#     if operator == "+":
+#         result = first_number + second_number
+#         print(f"{first_number} + {second_number} = {result}")
+#     elif operator == "*":
+#         result = first_number * second_number
+#         print(f"{first_number} * {second_number} = {result}")
+#     elif operator == "/":
+#         if second_number == 0:
+#             print("We're not doing advanced math here... Relax, this isn't rocket science, just enter a different value for the second number.")
+#         else:
+#             result = first_number / second_number
+#             print(f"{first_number} / {second_number} = {result}")
+#     elif operator == "-":
+#         result = first_number - second_number
+#         print(f"{first_number} - {second_number} = {result}")
+#     else:
+#         print("Invalid operator")
+#
+#     repeat = input("Do you want to calculate another number? (y/n): ").lower()
+#     if repeat != "y":
+#         print("Thank you for using this program. See you next time!")
+#         break
 
 #HW 5.3
 
-import string
+# import string
+#
+# text_for_hashtag = input("Please enter text for hashtag here: ")
+#
+# for char in string.punctuation:
+#     text_for_hashtag = text_for_hashtag.replace(char, "")
+#
+# text_for_hashtag = text_for_hashtag.lower()
+# text_for_hashtag = text_for_hashtag.title()
+#
+# text_for_hashtag = text_for_hashtag.replace(" ", "")
+#
+# limit_of_letters = ""
+# count_of_letters = 0
+#
+# for char in text_for_hashtag:
+#     if char.isalpha():
+#         limit_of_letters += char
+#         count_of_letters += 1
+#     if count_of_letters == 139:
+#         break
+#
+# hashtag = "#" + limit_of_letters
+#
+# print(hashtag)
 
-text_for_hashtag = input("Please enter text for hashtag here: ")
+#HW 6.1
 
-for char in string.punctuation:
-    text_for_hashtag = text_for_hashtag.replace(char, "")
+# import string
+#
+# ALL_LETTERS = string.ascii_letters
+# SEPARATOR = "-"
+#
+# user_input = input("Please enter 2 letters separated by a hyphen: ").strip()
+#
+# if len(user_input) == 3:
+#     start = user_input[0]
+#     end = user_input[2]
+#     sep = user_input[1]
+#
+#     if sep == SEPARATOR and start in ALL_LETTERS and end in ALL_LETTERS:
+#         start_index = ALL_LETTERS.index(start)
+#         end_index = ALL_LETTERS.index(end)
+#         result = ALL_LETTERS[start_index:end_index + 1]
+#         print(result)
 
-text_for_hashtag = text_for_hashtag.lower()
-text_for_hashtag = text_for_hashtag.title()
+#HW 6.2
 
-text_for_hashtag = text_for_hashtag.replace(" ", "")
+# seconds = int(input("Enter number of seconds (0 - 8640000): "))
+#
+# # 1 day = 86400 sec
+# days, remaining = divmod(seconds, 86400)
+# hours, remaining = divmod(remaining, 3600)
+# minutes, seconds = divmod(remaining, 60)
+#
+# if days == 1:
+#     day_word = "день"
+# elif 2 <= days <= 4:
+#     day_word = "дні"
+# else:
+#     day_word = "днів"
+#
+# hours = str(hours).zfill(2)
+# minutes = str(minutes).zfill(2)
+# seconds = str(seconds).zfill(2)
+#
+# print(f"{days} {day_word}, {hours}:{minutes}:{seconds}")
 
-limit_of_letters = ""
-count_of_letters = 0
+#HW 6.3
 
-for char in text_for_hashtag:
-    if char.isalpha():
-        limit_of_letters += char
-        count_of_letters += 1
-    if count_of_letters == 139:
-        break
+# number = int(input("Enter number: "))
+#
+# while number > 9:
+#     result = 1
+#     for digit in str(number):
+#         result *= int(digit)
+#     number = result
+#
+# print(number)
 
-hashtag = "#" + limit_of_letters
+#HW 7.1
 
-print(hashtag)
+# def say_hi(name, age):
+#     return f"Hi. My name is {name} and I'm {age} years old"
+#
+# assert say_hi("Alex", 32) == "Hi. My name is Alex and I'm 32 years old", 'Test1'
+# assert say_hi("Frank", 68) == "Hi. My name is Frank and I'm 68 years old", 'Test2'
+# print('ОК')
+
