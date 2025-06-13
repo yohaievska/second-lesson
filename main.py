@@ -286,46 +286,129 @@ import string
 
 #HW 7.2
 
-def correct_sentence(text):
-    text = text[0].upper() + text[1:]
-    if text[-1] != ".":
-        text += "."
-    return text
-
-assert correct_sentence("greetings, friends") == "Greetings, friends.", 'Test1'
-assert correct_sentence("hello") == "Hello.", 'Test2'
-assert correct_sentence("Greetings. Friends") == "Greetings. Friends.", 'Test3'
-assert correct_sentence("Greetings, friends.") == "Greetings, friends.", 'Test4'
-assert correct_sentence("greetings, friends.") == "Greetings, friends.", 'Test5'
-print('ОК')
+# def correct_sentence(text):
+#     text = text[0].upper() + text[1:]
+#     if text[-1] != ".":
+#         text += "."
+#     return text
+#
+# assert correct_sentence("greetings, friends") == "Greetings, friends.", 'Test1'
+# assert correct_sentence("hello") == "Hello.", 'Test2'
+# assert correct_sentence("Greetings. Friends") == "Greetings. Friends.", 'Test3'
+# assert correct_sentence("Greetings, friends.") == "Greetings, friends.", 'Test4'
+# assert correct_sentence("greetings, friends.") == "Greetings, friends.", 'Test5'
+# print('ОК')
 
 #HW 7.3
 
-def second_index(text, some_str):
-    first = text.find(some_str)
-    if first == -1:
-        return None
-    second = text.find(some_str, first + len(some_str))
-    return second if second != -1 else None
-
-assert second_index("sims", "s") == 3, 'Test1'
-assert second_index("find the river", "e") == 12, 'Test2'
-assert second_index("hi", "h") is None, 'Test3'
-assert second_index("Hello, hello", "lo") == 10, 'Test4'
-print('ОК')
+# def second_index(text, some_str):
+#     first = text.find(some_str)
+#     if first == -1:
+#         return None
+#     second = text.find(some_str, first + len(some_str))
+#     return second if second != -1 else None
+#
+# assert second_index("sims", "s") == 3, 'Test1'
+# assert second_index("find the river", "e") == 12, 'Test2'
+# assert second_index("hi", "h") is None, 'Test3'
+# assert second_index("Hello, hello", "lo") == 10, 'Test4'
+# print('ОК')
 
 #HW 7.4
 
-def common_elements():
+# def common_elements():
+#
+#     nums = list()
+#
+#     for i in range(100):
+#         # if i % 3 == 0 and i % 5 == 0:
+#         if i % 3 == 0:
+#             if i % 5 == 0:
+#                 nums.append(i)
+#     return set(nums)
+#
+# assert common_elements() == {0, 75, 45, 15, 90, 60, 30}
+# print('ОК')
 
-    nums = list()
+#HW 8.1
 
-    for i in range(100):
-        # if i % 3 == 0 and i % 5 == 0:
-        if i % 3 == 0:
-            if i % 5 == 0:
-                nums.append(i)
-    return set(nums)
+def add_one(some_list):
+    number_str = ""
+    for digit in some_list:
+        number_str += str(digit)
+    number = int(number_str)
+    number += 1
 
-assert common_elements() == {0, 75, 45, 15, 90, 60, 30}
-print('ОК')
+    result = []
+    for char in str(number):
+        result.append(int(char))
+
+    return result
+
+assert add_one([1, 2, 3, 4]) == [1, 2, 3, 5], 'Test1'
+assert add_one([9, 9, 9]) == [1, 0, 0, 0], 'Test2'
+assert add_one([0]) == [1], 'Test3'
+assert add_one([9]) == [1, 0], 'Test4'
+print("ОК")
+
+#HW 8.2
+
+def is_palindrome(text):
+    text = text.lower()
+
+    clean_text = ""
+    for char in text:
+        if char.isalnum():
+            clean_text += char
+
+    return clean_text == clean_text[::-1]
+
+assert is_palindrome('A man, a plan, a canal: Panama') == True, 'Test1'
+assert is_palindrome('0P') == False, 'Test2'
+assert is_palindrome('a.') == True, 'Test3'
+assert is_palindrome('aurora') == False, 'Test4'
+print("ОК")
+
+#HW 8.3
+
+def find_unique_value(some_list):
+    for num in some_list:
+        if some_list.count(num) == 1:
+            return num
+
+assert find_unique_value([1, 2, 1, 1]) == 2, 'Test1'
+assert find_unique_value([2, 3, 3, 3, 5, 5]) == 2, 'Test2'
+assert find_unique_value([5, 5, 5, 2, 2, 0.5]) == 0.5, 'Test3'
+print("ОК")
+
+#HW 9.1
+
+def popular_words(text, words):
+
+    text = text.lower()
+    text_words = text.split()
+    result = {}
+
+    for word in words:
+        result[word] = text_words.count(word)
+
+    return result
+
+assert popular_words(
+    '''When I was One I had just begun When I was Two I was nearly new''',
+    ['i', 'was', 'three', 'near']
+) == {'i': 4, 'was': 3, 'three': 0, 'near': 0}, 'Test1'
+print('OK')
+
+#HW 9.2
+
+def difference(*args):
+    if len(args) == 0:
+        return 0
+    return round(max(args) - min(args), 2)
+
+assert difference(1, 2, 3) == 2, 'Test1'
+assert difference(5, -5) == 10, 'Test2'
+assert difference(10.2, -2.2, 0, 1.1, 0.5) == 12.4, 'Test3'
+assert difference() == 0, 'Test4'
+print('OK')
