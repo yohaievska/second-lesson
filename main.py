@@ -332,83 +332,177 @@ import string
 
 #HW 8.1
 
-def add_one(some_list):
-    number_str = ""
-    for digit in some_list:
-        number_str += str(digit)
-    number = int(number_str)
-    number += 1
-
-    result = []
-    for char in str(number):
-        result.append(int(char))
-
-    return result
-
-assert add_one([1, 2, 3, 4]) == [1, 2, 3, 5], 'Test1'
-assert add_one([9, 9, 9]) == [1, 0, 0, 0], 'Test2'
-assert add_one([0]) == [1], 'Test3'
-assert add_one([9]) == [1, 0], 'Test4'
-print("ОК")
+# def add_one(some_list):
+#     number_str = ""
+#     for digit in some_list:
+#         number_str += str(digit)
+#     number = int(number_str)
+#     number += 1
+#
+#     result = []
+#     for char in str(number):
+#         result.append(int(char))
+#
+#     return result
+#
+# assert add_one([1, 2, 3, 4]) == [1, 2, 3, 5], 'Test1'
+# assert add_one([9, 9, 9]) == [1, 0, 0, 0], 'Test2'
+# assert add_one([0]) == [1], 'Test3'
+# assert add_one([9]) == [1, 0], 'Test4'
+# print("ОК")
 
 #HW 8.2
 
-def is_palindrome(text):
-    text = text.lower()
-
-    clean_text = ""
-    for char in text:
-        if char.isalnum():
-            clean_text += char
-
-    return clean_text == clean_text[::-1]
-
-assert is_palindrome('A man, a plan, a canal: Panama') == True, 'Test1'
-assert is_palindrome('0P') == False, 'Test2'
-assert is_palindrome('a.') == True, 'Test3'
-assert is_palindrome('aurora') == False, 'Test4'
-print("ОК")
+# def is_palindrome(text):
+#     text = text.lower()
+#
+#     clean_text = ""
+#     for char in text:
+#         if char.isalnum():
+#             clean_text += char
+#
+#     return clean_text == clean_text[::-1]
+#
+# assert is_palindrome('A man, a plan, a canal: Panama') == True, 'Test1'
+# assert is_palindrome('0P') == False, 'Test2'
+# assert is_palindrome('a.') == True, 'Test3'
+# assert is_palindrome('aurora') == False, 'Test4'
+# print("ОК")
 
 #HW 8.3
 
-def find_unique_value(some_list):
-    for num in some_list:
-        if some_list.count(num) == 1:
-            return num
-
-assert find_unique_value([1, 2, 1, 1]) == 2, 'Test1'
-assert find_unique_value([2, 3, 3, 3, 5, 5]) == 2, 'Test2'
-assert find_unique_value([5, 5, 5, 2, 2, 0.5]) == 0.5, 'Test3'
-print("ОК")
+# def find_unique_value(some_list):
+#     for num in some_list:
+#         if some_list.count(num) == 1:
+#             return num
+#
+# assert find_unique_value([1, 2, 1, 1]) == 2, 'Test1'
+# assert find_unique_value([2, 3, 3, 3, 5, 5]) == 2, 'Test2'
+# assert find_unique_value([5, 5, 5, 2, 2, 0.5]) == 0.5, 'Test3'
+# print("ОК")
 
 #HW 9.1
 
-def popular_words(text, words):
+# def popular_words(text, words):
+#
+#     text = text.lower()
+#     text_words = text.split()
+#     result = {}
+#
+#     for word in words:
+#         result[word] = text_words.count(word)
+#
+#     return result
+#
+# assert popular_words(
+#     '''When I was One I had just begun When I was Two I was nearly new''',
+#     ['i', 'was', 'three', 'near']
+# ) == {'i': 4, 'was': 3, 'three': 0, 'near': 0}, 'Test1'
+# print('OK')
+#
+#HW 9.2
+#
+# def difference(*args):
+#     if len(args) == 0:
+#         return 0
+#     return round(max(args) - min(args), 2)
+#
+# assert difference(1, 2, 3) == 2, 'Test1'
+# assert difference(5, -5) == 10, 'Test2'
+# assert difference(10.2, -2.2, 0, 1.1, 0.5) == 12.4, 'Test3'
+# assert difference() == 0, 'Test4'
+# print('OK')
 
-    text = text.lower()
-    text_words = text.split()
-    result = {}
+#HW 10.1
 
-    for word in words:
-        result[word] = text_words.count(word)
+def some_gen(begin, end, func):
+    current = begin
+    for _ in range(end):
+        yield current
+        current = func(current)
 
-    return result
+def pow(x):
+    return x ** 2
 
-assert popular_words(
-    '''When I was One I had just begun When I was Two I was nearly new''',
-    ['i', 'was', 'three', 'near']
-) == {'i': 4, 'was': 3, 'three': 0, 'near': 0}, 'Test1'
+from inspect import isgenerator
+
+gen = some_gen(2, 4, pow)
+assert isgenerator(gen) == True, 'Test1'
+assert list(gen) == [2, 4, 16, 256], 'Test2'
 print('OK')
 
-#HW 9.2
+#HW 10.2
 
-def difference(*args):
-    if len(args) == 0:
-        return 0
-    return round(max(args) - min(args), 2)
+import re
 
-assert difference(1, 2, 3) == 2, 'Test1'
-assert difference(5, -5) == 10, 'Test2'
-assert difference(10.2, -2.2, 0, 1.1, 0.5) == 12.4, 'Test3'
-assert difference() == 0, 'Test4'
+def first_word(text):
+    match = re.search(r"[a-zA-Z']+", text)
+    return match.group(0) if match else ""
+
+assert first_word("Hello world") == "Hello", 'Test1'
+assert first_word("greetings, friends") == "greetings", 'Test2'
+assert first_word("don't touch it") == "don't", 'Test3'
+assert first_word(".., and so on ...") == "and", 'Test4'
+assert first_word("hi") == "hi", 'Test5'
+assert first_word("Hello.World") == "Hello", 'Test6'
+print('OK')
+
+#HW 10.3
+def is_even(digit):
+    return digit % 2 == 0
+
+assert is_even(2) == True, 'Test1'
+assert is_even(5) == False, 'Test2'
+assert is_even(0) == True, 'Test3'
+print('OK')
+
+#HW 11.1
+
+def prime_generator(end):
+
+    for num in range(2, end + 1):
+        is_prime = True
+        for i in range(2, num):
+            if num % i == 0:
+                is_prime = False
+                break
+        if is_prime:
+            yield num
+
+from inspect import isgenerator
+
+gen = prime_generator(1)
+assert isgenerator(gen) == True, 'Test0'
+assert list(prime_generator(10)) == [2, 3, 5, 7], 'Test1'
+assert list(prime_generator(15)) == [2, 3, 5, 7, 11, 13], 'Test2'
+assert list(prime_generator(29)) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29], 'Test3'
+print('Ok')
+
+#HW 11.2
+
+def generate_cube_numbers(end):
+    num = 2
+    while True:
+        cube = num ** 3
+        if cube > end:
+            return
+        yield cube
+        num += 1
+
+from inspect import isgenerator
+
+gen = generate_cube_numbers(1)
+assert isgenerator(gen) == True, 'Test0'
+assert list(generate_cube_numbers(10)) == [8], 'оскільки воно менше 10.'
+assert list(generate_cube_numbers(100)) == [8, 27, 64], '5 у кубі це 125, а воно вже більше 100'
+assert list(generate_cube_numbers(1000)) == [8, 27, 64, 125, 216, 343, 512, 729, 1000], '10 у кубі це 1000'
+print('OK')
+
+#HW 11.3
+
+def is_even(number):
+    return (number & 1) == 0
+assert is_even(2494563894038**2) == True, 'Test1'
+assert is_even(1056897**2) == False, 'Test2'
+assert is_even(24945638940387**3) == False, 'Test3'
 print('OK')
