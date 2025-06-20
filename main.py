@@ -415,94 +415,312 @@ import string
 
 #HW 10.1
 
-def some_gen(begin, end, func):
-    current = begin
-    for _ in range(end):
-        yield current
-        current = func(current)
-
-def pow(x):
-    return x ** 2
-
-from inspect import isgenerator
-
-gen = some_gen(2, 4, pow)
-assert isgenerator(gen) == True, 'Test1'
-assert list(gen) == [2, 4, 16, 256], 'Test2'
-print('OK')
+# def some_gen(begin, end, func):
+#     current = begin
+#     for _ in range(end):
+#         yield current
+#         current = func(current)
+#
+# def pow(x):
+#     return x ** 2
+#
+# from inspect import isgenerator
+#
+# gen = some_gen(2, 4, pow)
+# assert isgenerator(gen) == True, 'Test1'
+# assert list(gen) == [2, 4, 16, 256], 'Test2'
+# print('OK')
 
 #HW 10.2
 
-import re
-
-def first_word(text):
-    match = re.search(r"[a-zA-Z']+", text)
-    return match.group(0) if match else ""
-
-assert first_word("Hello world") == "Hello", 'Test1'
-assert first_word("greetings, friends") == "greetings", 'Test2'
-assert first_word("don't touch it") == "don't", 'Test3'
-assert first_word(".., and so on ...") == "and", 'Test4'
-assert first_word("hi") == "hi", 'Test5'
-assert first_word("Hello.World") == "Hello", 'Test6'
-print('OK')
+# import re
+#
+# def first_word(text):
+#     match = re.search(r"[a-zA-Z']+", text)
+#     return match.group(0) if match else ""
+#
+# assert first_word("Hello world") == "Hello", 'Test1'
+# assert first_word("greetings, friends") == "greetings", 'Test2'
+# assert first_word("don't touch it") == "don't", 'Test3'
+# assert first_word(".., and so on ...") == "and", 'Test4'
+# assert first_word("hi") == "hi", 'Test5'
+# assert first_word("Hello.World") == "Hello", 'Test6'
+# print('OK')
 
 #HW 10.3
-def is_even(digit):
-    return digit % 2 == 0
-
-assert is_even(2) == True, 'Test1'
-assert is_even(5) == False, 'Test2'
-assert is_even(0) == True, 'Test3'
-print('OK')
+# def is_even(digit):
+#     return digit % 2 == 0
+#
+# assert is_even(2) == True, 'Test1'
+# assert is_even(5) == False, 'Test2'
+# assert is_even(0) == True, 'Test3'
+# print('OK')
 
 #HW 11.1
 
-def prime_generator(end):
+# def prime_generator(end):
+#
+#     for num in range(2, end + 1):
+#         is_prime = True
+#         for i in range(2, num):
+#             if num % i == 0:
+#                 is_prime = False
+#                 break
+#         if is_prime:
+#             yield num
 
-    for num in range(2, end + 1):
-        is_prime = True
-        for i in range(2, num):
-            if num % i == 0:
-                is_prime = False
-                break
-        if is_prime:
-            yield num
-
-from inspect import isgenerator
-
-gen = prime_generator(1)
-assert isgenerator(gen) == True, 'Test0'
-assert list(prime_generator(10)) == [2, 3, 5, 7], 'Test1'
-assert list(prime_generator(15)) == [2, 3, 5, 7, 11, 13], 'Test2'
-assert list(prime_generator(29)) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29], 'Test3'
-print('Ok')
+# from inspect import isgenerator
+#
+# gen = prime_generator(1)
+# assert isgenerator(gen) == True, 'Test0'
+# assert list(prime_generator(10)) == [2, 3, 5, 7], 'Test1'
+# assert list(prime_generator(15)) == [2, 3, 5, 7, 11, 13], 'Test2'
+# assert list(prime_generator(29)) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29], 'Test3'
+# print('Ok')
 
 #HW 11.2
 
-def generate_cube_numbers(end):
-    num = 2
-    while True:
-        cube = num ** 3
-        if cube > end:
-            return
-        yield cube
-        num += 1
-
-from inspect import isgenerator
-
-gen = generate_cube_numbers(1)
-assert isgenerator(gen) == True, 'Test0'
-assert list(generate_cube_numbers(10)) == [8], 'оскільки воно менше 10.'
-assert list(generate_cube_numbers(100)) == [8, 27, 64], '5 у кубі це 125, а воно вже більше 100'
-assert list(generate_cube_numbers(1000)) == [8, 27, 64, 125, 216, 343, 512, 729, 1000], '10 у кубі це 1000'
-print('OK')
+# def generate_cube_numbers(end):
+#     num = 2
+#     while True:
+#         cube = num ** 3
+#         if cube > end:
+#             return
+#         yield cube
+#         num += 1
+#
+# from inspect import isgenerator
+#
+# gen = generate_cube_numbers(1)
+# assert isgenerator(gen) == True, 'Test0'
+# assert list(generate_cube_numbers(10)) == [8], 'оскільки воно менше 10.'
+# assert list(generate_cube_numbers(100)) == [8, 27, 64], '5 у кубі це 125, а воно вже більше 100'
+# assert list(generate_cube_numbers(1000)) == [8, 27, 64, 125, 216, 343, 512, 729, 1000], '10 у кубі це 1000'
+# print('OK')
 
 #HW 11.3
 
-def is_even(number):
-    return (number & 1) == 0
-assert is_even(2494563894038**2) == True, 'Test1'
-assert is_even(1056897**2) == False, 'Test2'
-assert is_even(24945638940387**3) == False, 'Test3'
-print('OK')
+# def is_even(number):
+#     return (number & 1) == 0
+# assert is_even(2494563894038**2) == True, 'Test1'
+# assert is_even(1056897**2) == False, 'Test2'
+# assert is_even(24945638940387**3) == False, 'Test3'
+# print('OK')
+
+#HW 12.1
+
+import codecs
+import re
+
+def delete_html_tags(html_file, result_file='cleaned.txt'):
+    with codecs.open(html_file, 'r', 'utf-8') as file:
+        html = file.read()
+
+    cleaned = re.sub(r'<.*?>', '', html, flags=re.DOTALL)
+
+    lines = cleaned.splitlines()
+    non_empty_lines = [line.strip() for line in lines if line.strip()]
+
+    with codecs.open(result_file, 'w', 'utf-8') as file:
+        file.write('\n'.join(non_empty_lines))
+
+delete_html_tags('draft.html')
+
+print('Cleaning is complete. Check the file cleaned.txt')
+
+#HW 12.2
+
+class Item:
+    def __init__(self, name, price, description, dimensions):
+        self.name = name
+        self.price = price
+        self.description = description
+        self.dimensions = dimensions
+
+    def __str__(self):
+        return f"{self.name}, price: {self.price}"
+
+
+class User:
+    def __init__(self, name, surname, numberphone):
+        self.name = name
+        self.surname = surname
+        self.numberphone = numberphone
+
+    def __str__(self):
+        return f"{self.name.title()} {self.surname.title()}"
+
+
+class Purchase:
+    def __init__(self, user):
+        self.products = {}  # словник: товар -> кількість
+        self.user = user
+
+    def add_item(self, item, cnt):
+        self.products[item] = cnt
+
+    def __str__(self):
+        all_products = ""
+        for product, count in self.products.items():
+            all_products += f"\n{product.name}: {count} pcs."
+        return f"User: {self.user}\nItems:{all_products}"
+
+    def get_total(self):
+        all_sum = 0
+        for product, count in self.products.items():
+            all_sum += product.price * count
+        return all_sum
+
+lemon = Item('lemon', 5, "yellow", "small")
+apple = Item('apple', 2, "red", "middle")
+print(lemon)  # lemon, price: 5
+
+buyer = User("Ivan", "Ivanov", "02628162")
+print(buyer)  # Ivan Ivanov
+
+cart = Purchase(buyer)
+cart.add_item(lemon, 4)
+cart.add_item(apple, 20)
+print(cart)
+"""
+User: Ivan Ivanov
+Items:
+lemon: 4 pcs.
+apple: 20 pcs.
+"""
+
+assert isinstance(cart.user, User) is True, 'Екземпляр класу User'
+assert cart.get_total() == 60, "Всього 60"
+assert cart.get_total() == 60, 'Повинно залишатися 60!'
+
+cart.add_item(apple, 10)
+print(cart)
+"""
+User: Ivan Ivanov
+Items:
+lemon: 4 pcs.
+apple: 10 pcs.
+"""
+
+assert cart.get_total() == 40
+
+# HW 13.1
+
+class Human:
+    def __init__(self, gender, age, first_name, last_name):
+        self.gender = gender
+        self.age = age
+        self.first_name = first_name
+        self.last_name = last_name
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}, {self.gender}, {self.age} y.o."
+
+class Student(Human):
+    def __init__(self, gender, age, first_name, last_name, record_book):
+        super().__init__(gender, age, first_name, last_name)
+        self.record_book = record_book
+
+    def __str__(self):
+        return f"Student {self.first_name} {self.last_name}, ID: {self.record_book}"
+
+class Group:
+    def __init__(self, number):
+        self.number = number
+        self.group = set()
+
+    def add_student(self, student):
+        self.group.add(student)
+
+    def find_student(self, last_name):
+        for student in self.group:
+            if student.last_name == last_name:
+                return student
+        return None
+
+    def delete_student(self, last_name):
+        student_to_delete = self.find_student(last_name)
+        if student_to_delete:
+            self.group.remove(student_to_delete)
+
+    def __str__(self):
+        all_students = '\n'.join(str(s) for s in self.group)
+        return f'Group number: {self.number}\n{all_students}'
+
+st1 = Student('Male', 30, 'Steve', 'Jobs', 'AN142')
+st2 = Student('Female', 25, 'Liza', 'Taylor', 'AN145')
+
+gr = Group('PD1')
+gr.add_student(st1)
+gr.add_student(st2)
+
+print(gr)
+
+assert str(gr.find_student('Jobs')) == str(st1), 'Test1'
+assert gr.find_student('Jobs2') is None, 'Test2'
+assert isinstance(gr.find_student('Jobs'), Student) is True, 'Метод повинен повертати екземпляр'
+
+gr.delete_student('Taylor')
+print(gr)  # Only one student
+
+gr.delete_student('Taylor')  # No error!
+
+# HW 13.2
+
+class Counter:
+
+    def __init__(self, current=1, min_value=0, max_value=10):
+        self.current = current
+        self.min_value = min_value
+        self.max_value = max_value
+
+    def set_current(self, start):
+        self.current = start
+
+    def set_max(self, max_max):
+        self.max_value = max_max
+
+    def set_min(self, min_min):
+        self.min_value = min_min
+
+    def step_up(self):
+        if self.current < self.max_value:
+            self.current += 1
+        else:
+            raise ValueError('Maximum achieved')
+
+    def step_down(self):
+        if self.current > self.min_value:
+            self.current -= 1
+        else:
+            raise ValueError('Minimum achieved')
+
+    def get_current(self):
+        return self.current
+
+counter = Counter()
+counter.set_current(7)
+counter.step_up()
+counter.step_up()
+counter.step_up()
+assert counter.get_current() == 10, 'Test1'
+
+try:
+    counter.step_up()  # ValueError
+except ValueError as e:
+    print(e)  # Достигнут максимум
+
+assert counter.get_current() == 10, 'Test2'
+
+counter.set_min(7)
+counter.step_down()
+counter.step_down()
+counter.step_down()
+assert counter.get_current() == 7, 'Test3'
+
+try:
+    counter.step_down()  # ValueError
+except ValueError as e:
+    print(e)  # Достигнут минимум
+
+assert counter.get_current() == 7, 'Test4'
